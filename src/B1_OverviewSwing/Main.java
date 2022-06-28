@@ -12,6 +12,7 @@ public class Main {
 
     public static void main(String[] args) {
         SinhVien sv = new SinhVien();
+        
 //        sv.setTen("aaa");
 //        sv.setLoai("aaa");
 //SinhVien sv = new SinhVien(ten, loai, true, soThich);
