@@ -14,22 +14,20 @@ import javax.swing.DefaultComboBoxModel;
  * @author hangnt
  */
 public class DetailDongVat extends javax.swing.JDialog {
-
-    private DongVat dongVat;
+    
     private DefaultComboBoxModel dcbm;
     private List<Integer> lists;
-
-    public DetailDongVat(java.awt.Frame parent, boolean modal, DongVat dv) {
+    
+    public DetailDongVat(java.awt.Frame parent, boolean modal, DongVat dongVat) {
         super(parent, modal);
         initComponents();
-        this.dongVat = dv;
         dcbm = new DefaultComboBoxModel();
         lists = new ArrayList<>();
         jComboBox1.setModel(dcbm);
         loadCombobox();
-        fillData();
+        fillData(dongVat);
     }
-
+    
     private void loadCombobox() {
         for (int i = 2000; i < 2011; i++) {
             lists.add(i);
@@ -37,16 +35,17 @@ public class DetailDongVat extends javax.swing.JDialog {
         dcbm.addAll(lists);
         dcbm.setSelectedItem(2000);
     }
-
-    private void fillData() {
-        txtMaDV.setText(dongVat.getMaDV());
-        txtTenDV.setText(dongVat.getTenDongVat());
-        if (dongVat.isGioiTinh() == true) {
+    
+    private void fillData(DongVat dv) {
+        txtMaDV.setText(dv.getMaDV());
+        txtTenDV.setText(dv.getTenDongVat());
+        boolean gioiTinh = dv.isGioiTinh();
+        if (gioiTinh) {
             radioNam.setSelected(true);
         } else {
             radioNu.setSelected(true);
         }
-        jComboBox1.setSelectedItem(dongVat.getNamSinh());
+        jComboBox1.setSelectedItem(dv.getNamSinh());
     }
 
     /**
@@ -59,7 +58,7 @@ public class DetailDongVat extends javax.swing.JDialog {
     private void initComponents() {
 
         jLabel4 = new javax.swing.JLabel();
-        btnUpdate = new javax.swing.JButton();
+        btnClose = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         radioNam = new javax.swing.JRadioButton();
         radioNu = new javax.swing.JRadioButton();
@@ -75,10 +74,10 @@ public class DetailDongVat extends javax.swing.JDialog {
 
         jLabel4.setText("Ten DV");
 
-        btnUpdate.setText("Update");
-        btnUpdate.addActionListener(new java.awt.event.ActionListener() {
+        btnClose.setText("Close");
+        btnClose.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnUpdateActionPerformed(evt);
+                btnCloseActionPerformed(evt);
             }
         });
 
@@ -115,7 +114,9 @@ public class DetailDongVat extends javax.swing.JDialog {
                         .addComponent(jLabel1))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(21, 21, 21)
-                        .addComponent(btnClear))
+                        .addComponent(btnClear)
+                        .addGap(73, 73, 73)
+                        .addComponent(btnClose))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(48, 48, 48)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -135,8 +136,7 @@ public class DetailDongVat extends javax.swing.JDialog {
                                 .addComponent(radioNam)
                                 .addGap(59, 59, 59)
                                 .addComponent(radioNu))
-                            .addComponent(txtTenDV, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnUpdate))))
+                            .addComponent(txtTenDV, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -145,7 +145,9 @@ public class DetailDongVat extends javax.swing.JDialog {
                 .addGap(44, 44, 44)
                 .addComponent(jLabel1)
                 .addGap(57, 57, 57)
-                .addComponent(btnClear)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnClear)
+                    .addComponent(btnClose))
                 .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
@@ -159,17 +161,17 @@ public class DetailDongVat extends javax.swing.JDialog {
                     .addComponent(radioNam)
                     .addComponent(radioNu)
                     .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(btnUpdate)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(53, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
-
-    }//GEN-LAST:event_btnUpdateActionPerformed
+    private void btnCloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCloseActionPerformed
+        ViewDongVat view = new ViewDongVat();
+        this.dispose();
+        view.setVisible(true);
+    }//GEN-LAST:event_btnCloseActionPerformed
 
     private void btnClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearActionPerformed
 
@@ -177,7 +179,7 @@ public class DetailDongVat extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnClear;
-    private javax.swing.JButton btnUpdate;
+    private javax.swing.JButton btnClose;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
