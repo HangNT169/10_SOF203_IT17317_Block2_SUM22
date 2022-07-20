@@ -20,7 +20,7 @@ public class GiangVien {
     public GiangVien() {
     }
 
-    public GiangVien(String maGV, String tenGV, int tuoi, String bac, String loai, boolean gioiTinh) {
+    public GiangVien(String maGV, String tenGV, int tuoi, String loai, String bac, boolean gioiTinh) {
         this.maGV = maGV;
         this.tenGV = tenGV;
         this.tuoi = tuoi;
