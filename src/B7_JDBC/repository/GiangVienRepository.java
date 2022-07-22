@@ -70,10 +70,4 @@ public class GiangVienRepository {
         return null;
     }
 
-    public static void main(String[] args) {
-        List<GiangVien> lists = new GiangVienRepository().getAll();
-        for (GiangVien gv : lists) {
-            System.out.println(gv.toString());
-        }
-    }
 }
