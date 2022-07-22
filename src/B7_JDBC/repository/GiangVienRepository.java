@@ -70,4 +70,60 @@ public class GiangVienRepository {
         return null;
     }
 
+    public boolean add(GiangVien gv) {
+        String query = "INSERT INTO B7_TrenLop.dbo.giang_vien "
+                + "(ma_gv, ten_gv, tuoi, bac, loai, gioi_tinh) "
+                + "VALUES(?,?,?,?,?,?)";
+        int check = 0;
+        try ( Connection con = SQLServerConnection.getConnection();  PreparedStatement ps = con.prepareStatement(query);) {
+            ps.setObject(1, gv.getMaGV());
+            ps.setObject(2, gv.getTenGV());
+            ps.setObject(3, gv.getTuoi());
+            ps.setObject(4, gv.getBac());
+            ps.setObject(5, gv.getLoai());
+            ps.setObject(6, gv.isGioiTinh());
+            check = ps.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace(System.out);
+        }
+        return check > 0;
+    }
+
+    public boolean delete(String maGV) {
+        String query = "DELETE FROM B7_TrenLop.dbo.giang_vien\n"
+                + "WHERE ma_gv= ?";
+        int check = 0;
+        try ( Connection con = SQLServerConnection.getConnection();  PreparedStatement ps = con.prepareStatement(query);) {
+            ps.setObject(1, maGV);
+            check = ps.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace(System.out);
+        }
+        return check > 0;
+    }
+
+    public boolean update(GiangVien gv, String maGV) {
+        String query = "UPDATE B7_TrenLop.dbo.giang_vien"
+                + "SET ten_gv=?, tuoi=?, bac=?, loai=?, gioi_tinh=?"
+                + "WHERE ma_gv= ?";
+        int check = 0;
+        try ( Connection con = SQLServerConnection.getConnection();  PreparedStatement ps = con.prepareStatement(query);) {
+            ps.setObject(1, gv.getTenGV());
+            ps.setObject(2, gv.getTuoi());
+            ps.setObject(3, gv.getBac());
+            ps.setObject(4, gv.getLoai());
+            ps.setObject(5, gv.isGioiTinh());
+            ps.setObject(6, maGV); // ma da ton tai trong DB
+            check = ps.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace(System.out);
+        }
+        return check > 0;
+    }
+
+    public static void main(String[] args) {
+        GiangVien gv = new GiangVien("hhhh", "asss", 10, "full", "1", false);
+        boolean add = new GiangVienRepository().add(gv);
+        System.out.println(add);
+    }
 }
