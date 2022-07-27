@@ -2,11 +2,6 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group>
-            <file>file:/Users/hangnt/Documents/Git/SUMMER2022/Block2/10_SOF203_IT17317_Block2_SUM22/src/B7_JDBC/service/GiangVienService.java</file>
-            <file>file:/Users/hangnt/Documents/Git/SUMMER2022/Block2/10_SOF203_IT17317_Block2_SUM22/src/B7_JDBC/service/impl/GiangVienServiceImpl.java</file>
-            <file>file:/Users/hangnt/Documents/Git/SUMMER2022/Block2/10_SOF203_IT17317_Block2_SUM22/src/B7_JDBC/repository/SQLServerConnection.java</file>
-            <file>file:/Users/hangnt/Documents/Git/SUMMER2022/Block2/10_SOF203_IT17317_Block2_SUM22/src/B7_JDBC/repository/GiangVienRepository.java</file>
-        </group>
+        <group/>
     </open-files>
 </project-private>
